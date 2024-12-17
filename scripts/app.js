@@ -5,6 +5,7 @@ const blue = document.getElementById("blue");
 const yellow = document.getElementById("yellow");
 const colors = [red, green, blue, yellow]; 
 
+let cursor = 0;
 let current_level = 0; 
 let game_pattern = []; 
 let user_pattern = []; 
@@ -24,10 +25,13 @@ function blink(element){
  }
 
 function waitForUserInput(){
-    console.log("waiting for user's input...");
-    const correct_element = game_pattern[current_level-1];
-    linkToGameOver(correct_element);
-    correct_element.addEventListener("click", correctAnswer);
+    if(game_pattern[cursor]){
+        linkToGameOver(game_pattern[cursor]);
+        game_pattern[cursor].addEventListener("click", correctAnswer);
+    }else{
+        cursor = 0;
+        moveToNextLevel();
+    }
 }
 
 function linkToGameOver(correct_element){
@@ -38,11 +42,13 @@ function linkToGameOver(correct_element){
 }
 
 function gameOver(){
-    alert("GameOver")
+    alert("GameOver");
 }
 
 function correctAnswer(){
-    alert("Mabrouk xD")
+    alert("Mabrouk xD");
+    cursor += 1;
+    waitForUserInput();
 }
 
 function moveToNextLevel(){
