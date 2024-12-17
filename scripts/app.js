@@ -8,7 +8,6 @@ const colors = [red, green, blue, yellow];
 let cursor = 0;
 let current_level = 0; 
 let game_pattern = []; 
-let user_pattern = []; 
 
 function randomElement(){
     return colors[Math.floor(Math.random()*colors.length)];
